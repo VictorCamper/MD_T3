@@ -1,0 +1,183 @@
+\documentclass[11pt]{utalcaDoc}
+
+\usepackage[activeacute,spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage{anysize}
+%\marginsize{2cm}{2cm}{1.7cm}{1.5cm}
+\usepackage[top=3cm, bottom=2cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage{url}
+\usepackage{float}
+\usepackage{amsfonts}
+
+\usepackage{algpseudocode}
+
+
+
+\usepackage{fancyhdr}
+
+% aqui definimos el encabezado de las paginas pares e impares.
+\lhead[Modelos Discretos -- T3]{Modelos Discretos -- T3}
+%\chead[y1]{y2}
+\rhead[Universidad de Talca]{Universidad de Talca}
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+
+% aqui definimos el pie de pagina de las paginas pares e impares.
+%\lfoot[d1]{e1}
+%\cfoot[c1]{d2}
+\rfoot[Victor Reyes, Pedro González]{Victor Reyes, Pedro González}
+\renewcommand{\footrulewidth}{0.5pt}
+
+
+\pagestyle{fancy} 
+
+
+\title{{\bf Modelos Discretos}\\Tarea 1}
+\author{Victor Reyes Medina,  Pedro González Meléndez}
+\date{\today}
+
+\begin{document}
+\renewcommand{\figurename}{Figura~}
+\renewcommand{\tablename}{Tabla~}
+\renewcommand{\theenumii}{\arabic{enumii}}
+\renewcommand{\labelenumii}{%
+ \theenumi.\theenumii.
+}
+\maketitle
+
+\section{Lógica proposicional}
+
+\subsection{ } %1.1
+
+$\\p:  \vartriangle$ ABC Isósceles \\
+$q:  \vartriangle$ ABC Equilátero \\
+$r:  \vartriangle$ ABC Equiangular\\
+
+\begin{enumerate}
+\item $p \to q$ Si el triángulo ABC es equilátero, entonces es isósceles.
+\item $\neg p \to \neg q$ Si el triángulo ABC no es isósceles, entonces no es equiangular. 
+\item $q \iff r$ El triángulo ABC es equilatero si y sólo si el triángulo es equiangular. 
+\item $p \wedge \neg q$ Un triángulo ABC es isósceles y no equilátero.
+\item $r \to p$ SI el triángulo ABC es quilátero, entonces es isósceles.
+\end{enumerate}
+
+\newpage 
+\subsection{ } %1.2
+\begin{enumerate}
+
+
+\item
+\[ \neg(p \lor \neg q) \to \neg p \]
+Por ley de Morgan:
+\[ (\neg p \wedge q) \to \neg p\]
+\begin{tabular}{|c|c||c|c|c|}
+\hline 
+$p$ & \textbf{$q$} & \textbf{$(\neg p \wedge q)$} & \textbf{$\neg p$} &\textbf{$ (\neg p \wedge q) \to \neg p $} \\ 
+\hline 
+0 & 0 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 0 & 1 \\ 
+\hline 
+1 & 1 & 0 & 0 & 1 \\ 
+\hline
+\end{tabular} \ \ 
+La expresión es una tautología.
+
+\item  
+\[ (p \to q) \to r\]
+\begin{tabular}{|c|c|c||c|c|}
+\hline 
+$p$ & $q$ & $r$ & $(p \to q)$ &  $r$\\ 
+\hline 
+1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 1 & 0 & 1 & 0 \\ 
+\hline 
+1 & 0 & 1 & 0 & 1 \\ 
+\hline 
+1 & 0 & 0 & 0 & 1 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 0 \\ 
+\hline 
+0 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 0 & 1 & 0 \\ 
+\hline 
+\end{tabular} \ \
+La expresión es satisfacible.
+
+
+\item
+\[ (p \to q) \to (q \to p)\]
+
+\begin{tabular}{|c|c||c|c|c|}
+\hline
+$p$ & $q$ & $(p \to q)$ & $(q \to p)$ & $(p \to q) \to (q \to p)$ \\
+\hline 
+0 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 0 & 0 \\ 
+\hline 
+1 & 0 & 0 & 1 & 1 \\ 
+\hline 
+1 & 1 & 1 & 1 & 1 \\  
+\hline 
+\end{tabular} \ \
+La expresión es satisfacible.
+
+\item
+\[ ((p \to q) \wedge (q \to r)) \to (p \to r)\]
+\begin{tabular}{|c|c|c||c|c|c|c|c|}
+\hline
+$p$ & $q$ & $r$ & $(p \to q)$ & $(q \to r)$ & $((p \to q) \wedge (q \to r))$ & $(p \to r)$ & $((p \to q) \wedge (q \to r)) \to (p \to r)$ \\
+\hline 
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \\ 
+\hline 
+1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\ 
+\hline 
+0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular} \\ 
+La expresión es una tautología.
+
+
+
+\end{enumerate}
+\newpage
+\subsection{ } %1.3
+
+\newpage
+\section{Lógica de primer orden}
+
+
+\subsection{ } %2.1
+
+\newpage
+\subsection{ } %2.2
+ 
+\newpage
+\subsection{ } %2.3
+
+
+\end{document}
