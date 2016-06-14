@@ -10,7 +10,7 @@
 \usepackage{amsthm}
 %\usepackage{anysize}
 %\marginsize{2cm}{2cm}{1.7cm}{1.5cm}
-\usepackage[top=3cm, bottom=2cm, left=1.8cm, right=1.8cm]{geometry}
+\usepackage[top=2.7cm, bottom=2cm, left=1.8cm, right=1.8cm]{geometry}
 \usepackage{url}
 \usepackage{float}
 \usepackage{amsfonts}
@@ -48,7 +48,8 @@
 \renewcommand{\tablename}{Tabla~}
 \renewcommand{\theenumii}{\arabic{enumii}}
 \renewcommand{\labelenumii}{%
- \theenumi.\theenumii.
+ %\theenumi.\theenumii.
+  \theenumii.
 }
 \maketitle
 
@@ -166,12 +167,221 @@ La expresión es una tautología.
 \end{enumerate}
 \newpage
 \subsection{ } %1.3
+\begin{enumerate}
+\item \[ \]
+a)
+	\[ p \to (q \wedge r) \equiv (p \to q) \wedge (p \to r)\]
+%Por el lado izquierdo:\\
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline 
+$p$ & $q$ & $r$ & $p$ & $(q \wedge r)$ & $p \to (q \wedge r)$ \\ 
+\hline 
+0 & 0 & 0 & 0 & 0 & 1 \\ 
+\hline 
+0 & 0 & 1 & 0 & 0 & 1 \\ 
+\hline 
+0 & 1 & 0 & 0 & 0 & 1 \\ 
+\hline 
+0 & 1 & 1 & 0 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 1 & 0 & 0 \\ 
+\hline 
+1 & 0 & 1 & 1 & 0 & 0 \\ 
+\hline 
+1 & 1 & 0 & 1 & 0 & 0 \\ 
+\hline 
+1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular} 
+%\\ \\ \ \
+%Por el lado derecho: \\
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline 
+$p$ & $q$ & $r$ & $(p \to q)$ & $(p \to r)$ & $(p \to q) \wedge (p \to r)$ \\ 
+\hline 
+0 & 0 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 0 & 0 & 0 \\ 
+\hline 
+1 & 0 & 1 & 0 & 1 & 0 \\ 
+\hline 
+1 & 1 & 0 & 1 & 0 & 0 \\ 
+\hline 
+1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular} 
+\\ \\ \ \ 
+Las fórmulas son lógicamente equivalentes.
+\[ \]
+b)
+	\[ (p \lor q) \to r \equiv (p \to r) \wedge (q \to r) \]
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline 
+$p$ & $q$ & $r$ & $(p \lor q)$ & $r$ & $(p \lor q) \to r$ \\ 
+\hline 
+0 & 0 & 0 & 0 & 0 & 1 \\ 
+\hline 
+0 & 0 & 1 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 0 & 0 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 1 & 0 & 0 \\ 
+\hline
+1 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 1 & 0 & 1 & 0 & 0 \\ 
+\hline 
+1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular} 
+%\\
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline 
+$p$ & $q$ & $r$ & $(p \to r)$ & $(q \to r)$ & $(p \to r) \wedge (q \to r)$ \\ 
+\hline 
+0 & 0 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 0 & 0 \\ 
+\hline 
+0 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline
+1 & 0 & 0 & 0 & 1 & 0 \\ 
+\hline 
+1 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 1 & 0 & 0 & 0 & 0 \\ 
+\hline 
+1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular} 
+\\ \\ \ \
+Las fórmulas son lógicamente equivalentes.
+\[ \]
+c)
+\[ p \to (q \lor r) \equiv \neg r \to (p \to q) \]
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline 
+$p$ & $q$ & $r$ & $p$ & $(q \lor r)$ & $p \to (q \lor r)$ \\ 
+\hline 
+0 & 0 & 0 & 0 & 0 & 1 \\ 
+\hline 
+0 & 0 & 1 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 0 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 0 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 1 & 0 & 0 \\ 
+\hline 
+1 & 0 & 1 & 1 & 1 & 1 \\ 
+\hline 
+1 & 1 & 0 & 1 & 1 & 1 \\ 
+\hline
+1 & 1 & 1 & 1 & 1 & 1 \\ 
+\hline 
+\end{tabular} 
+% \\
+\begin{tabular}{|c|c|c||c|c|c|}
+\hline 
+$p$ & $q$ & $r$ & $\neg r$ & $(p \to q)$ & $\neg r \to (p \to q)$ \\
+\hline 
+0 & 0 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 0 & 1 & 0 & 1 & 1 \\ 
+\hline 
+0 & 1 & 0 & 1 & 1 & 1 \\ 
+\hline 
+0 & 1 & 1 & 0 & 1 & 1 \\ 
+\hline 
+1 & 0 & 0 & 1 & 0 & 0 \\ 
+\hline 
+1 & 0 & 1 & 0 & 0 & 1 \\ 
+\hline 
+1 & 1 & 0 & 1 & 1 & 1 \\ 
+\hline 
+1 & 1 & 1 & 0 & 1 & 1 \\ 
+\hline 
+\end{tabular}
+\\ \\ \ \
+Las fórmulas son lógicamente equivalentes.
 
+\newpage
+\item
+
+\[ p \to (q \lor r) \equiv (p \wedge \neg q) \to r \]
+Aplicamos sustitución de implicación en ambos lados $(x \to y) = (\neg x \lor y)$
+\[ \neg p \lor (q \lor r) \equiv \neg (p \wedge \neg q) \lor r \]
+Aplicamos asocitividad en el lado izquierdo $(x \lor (y \lor z)) = ((x \lor y) \lor z)$ \\
+Y Ley de Morgan en el lado derecho $\neg(x \wedge y) = (\neg x \lor \neg y)$
+\[ (\neg p \lor q) \lor r \equiv (\neg p \lor q) \lor r \]
+Se tiene en ambos lados la misma fórmula lógica, por lo que su equivalencia lógica queda demostrada
+\end{enumerate}
 \newpage
 \section{Lógica de primer orden}
 
 
 \subsection{ } %2.1
+
+\begin{enumerate}
+\item 
+
+\begin{align*}
+&Hora(t) : \text{Horario de atención (entre 09:00 y 18:00)}\\
+&AbiertaB(b) : \text{Bodega b abierta}\\
+&Guardar(p,b) : \text{Persona p guarda materiales en Bodega b}\\
+&Sacar(p,b) : \text{Persona p saca materiales de Bodega b}\\
+&Llave(p,b) : \text{Persona p tiene llaves de Bodega b}\\
+&Capataz(p) : \text{Persona p es capataz}\\
+&\forall b \in Bodegas \text{ y } t_a = \text{hora actual} \quad (Hora(t_a) \to AbiertaB(b))\\
+&\forall p \in Personas, b \in Bodegas \text{ y } t_a = \text{hora actual} \quad (Guardar(p,b,t) \iff Hora(t_a) \lor Llave(p,b))\\
+&\forall p \in Personas, b \in Bodegas \text{ y } t_a = \text{hora actual} \quad (Sacar(p,b,t) \iff Hora(t_a) \lor Llave(p,b))\\
+&\exists p \in Personas, \forall b \in Bodegas \quad (Llave(p,b) \iff Capataz(p))
+\end{align*}
+
+
+\item Se tiene:
+
+
+
+$Guardar(Pedro,Bodega1,20:00)$
+
+\rule[0.1cm]{10cm}{0.1pt}
+
+$Capataz(Pedro)$
+
+a) Demostración directa.
+\begin{enumerate}
+\item Para $p = $ Pedro, $b = $ Bodega1 y $t_a = $ 20:00.
+\item $Guardar(Pedro,Bodega1,20:00)$ (Axioma).
+\item $\underbrace{Hora(20:00)}_{(1)} \lor \underbrace{Llave(Pedro, Bodega1)}_{(2)}$.
+\item $(1)$ es falso ya que $20:00$ no es parte de los horarios de atención.
+\item De $(2)$ se tiene que $Capataz(Pedro)$ (Axioma).
+\item Finalmente, Pedro es Capataz.
+\end{enumerate}
+
+b) Demostración por contradicción.
+\begin{enumerate}
+\item Para $p = $ Pedro, $b = $ Bodega1 y $t_a = $ 20:00.
+\item Asumiendo $\neg(Capataz(Pedro))$ y $Guardar(Pedro,Bodega1,20:00)$. Pedro no es Capataz, pero guardó materiales fuera del horario de atención.
+\item Se tiene que (por equivalencia) $\neg (Llave(Pedro, Bodega1))$, Pedro no tiene las llaves de la Bodega1.
+\item Reemplazando en el axioma instanciado \\ $Guardar(Pedro,Bodega1,20:00) \iff Hora(20:00) \lor \neg (Llave(Pedro, Bodega1)) $.
+\item Se sabe que $Hora(20:00) = 0$, por lo que el lado derecho de la equivalencia es falso.
+\item Por implicancia, se tiene que $\neg(Guardar(Pedro,Bodega1,20:00))$, lo que entra en contradicción con lo expuesto en el paso 2.
+\item Finalmente, por contradicción se demuestra que Pedro es Capataz.
+\end{enumerate}
+
+
+\end{enumerate}
 
 \newpage
 \subsection{ } %2.2
