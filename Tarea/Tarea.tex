@@ -17,7 +17,7 @@
 
 \usepackage{algpseudocode}
 
-
+\usepackage{bussproofs} % pruebas lógicas
 
 \usepackage{fancyhdr}
 
@@ -334,7 +334,7 @@ Se tiene en ambos lados la misma fórmula lógica, por lo que su equivalencia l�
 
 \begin{enumerate}
 \item 
-
+Se definen las funciones predicativas:
 \begin{align*}
 &Hora(t) : \text{Horario de atención (entre 09:00 y 18:00)}\\
 &AbiertaB(b) : \text{Bodega b abierta}\\
@@ -342,6 +342,9 @@ Se tiene en ambos lados la misma fórmula lógica, por lo que su equivalencia l�
 &Sacar(p,b) : \text{Persona p saca materiales de Bodega b}\\
 &Llave(p,b) : \text{Persona p tiene llaves de Bodega b}\\
 &Capataz(p) : \text{Persona p es capataz}\\
+\end{align*}
+Se tienen las siguientes inferencias:
+\begin{align*}
 &\forall b \in Bodegas \text{ y } t_a = \text{hora actual} \quad (Hora(t_a) \to AbiertaB(b))\\
 &\forall p \in Personas, b \in Bodegas \text{ y } t_a = \text{hora actual} \quad (Guardar(p,b,t) \iff Hora(t_a) \lor Llave(p,b))\\
 &\forall p \in Personas, b \in Bodegas \text{ y } t_a = \text{hora actual} \quad (Sacar(p,b,t) \iff Hora(t_a) \lor Llave(p,b))\\
@@ -351,17 +354,19 @@ Se tiene en ambos lados la misma fórmula lógica, por lo que su equivalencia l�
 
 \item Se tiene:
 
+\AxiomC{$Guardar(Pedro,Bodega1,20:00)$}
+\UnaryInfC{$Capataz(Pedro)$}
+\DisplayProof
 
+%$Guardar(Pedro,Bodega1,20:00)$
 
-$Guardar(Pedro,Bodega1,20:00)$
+%\rule[0.1cm]{10cm}{0.1pt}
 
-\rule[0.1cm]{10cm}{0.1pt}
-
-$Capataz(Pedro)$
+%$Capataz(Pedro)$
 
 a) Demostración directa.
 \begin{enumerate}
-\item Para $p = $ Pedro, $b = $ Bodega1 y $t_a = $ 20:00.
+\item Instanciación global de: $p = $ Pedro, $b = $ Bodega1 y $t_a = $ 20:00.
 \item $Guardar(Pedro,Bodega1,20:00)$ (Axioma).
 \item $\underbrace{Hora(20:00)}_{(1)} \lor \underbrace{Llave(Pedro, Bodega1)}_{(2)}$.
 \item $(1)$ es falso ya que $20:00$ no es parte de los horarios de atención.
@@ -385,9 +390,83 @@ b) Demostración por contradicción.
 
 \newpage
 \subsection{ } %2.2
+En términos de lógica de primer orden:
+\begin{enumerate}
+\item $\exists x \quad [C(x) \wedge PA(x) \wedge M(x)]$
+\item $\exists x \quad [C(x) \wedge SA(x) \wedge \neg M(x)]$
+\item $\forall x \quad [C(x) \to (M(x) \lor F(x))]$
+\item $\neg \exists x \quad [C(x) \wedge PG(x) \wedge F(x)]$
+\item $\forall x \quad [SA(x) \to (F(x) \lor E(x))]$
+\end{enumerate} 
+
+Valores de verdad:
+\begin{enumerate}
+\item Verdadero, ya que sí existen estudiantes que estén en el curso, sean de primer año y pertenezcan a la carrera de Matemáticas (4 estudiantes).
+\item Verdadero, puesto que sí existen estudiantes que estén en el curso, que sean de segundo año y no pertenezcan a la carrera de Matemáticas (16 estudiantes).
+\item Falso, debido a que en el curso existen dos estudiantes de primer año de Ingeniería Eléctrica y cuatro más de segundo año de la misma carrera.
+\item Verdadero, ya que no existe ningún estudiante de postgrado de Física en el curso.
+\item Verdadero, por que existen estudiantes que sean de segundo año y pertenezcan a las carreras Física y Matemáticas.
+\end{enumerate}
  
 \newpage
 \subsection{ } %2.3
 
+
+
+
+\begin{prooftree}
+\AxiomC{Todos los lógicos son reflexivos y estudiosos.}
+\noLine
+	\UnaryInfC{Algunos lógicos son filósofos.}
+\singleLine
+\UnaryInfC{Algunas personas reflexivas son filósofos.}
+\end{prooftree}
+
+
+Funciones de predicado:
+\begin{align*}
+&L(x) : \text{ Es lógico}\\
+&R(x) : \text{ Es reflexivo}\\
+&E(x) : \text{ Es estudioso}\\
+&F(x) : \text{ Es filósofo}
+\end{align*}
+
+Se tienen las siguientes inferencias:
+\begin{align*}
+&1. \quad\forall x \quad[L(x) \to (R(x) \wedge E(x))] \\
+&2. \quad\exists x \quad [L(x) \wedge F(x)]\\
+&\rule[0.1cm]{6cm}{0.1pt}\\
+&\exists x \quad [R(x) \wedge F(x)]
+\end{align*}
+
+\paragraph{Demostración directa}
+\rule[0.1cm]{6cm}{0pt}\\
+Aplicando derivaciones:
+\begin{enumerate}
+\item[3.] $L(w) \to (R(w) \wedge E(w))$ \hspace{1.2cm} Ejemplificación universal en $w$ de (1).
+\item[4.] $L(w) \wedge F(w)$ \hspace{3cm} Ejemplificación universal en $w$ de (2).
+\item[5.] $C_1 = L(w) \text{ y } C_2 = F(w)$ \hspace{1.1cm} Eliminación del $and$ en (4).
+\item[6.] 
+		\AxiomC{$L(w) \to (R(w) \wedge E(w))$}
+		\noLine
+		\UnaryInfC{$L(w)$}
+		\singleLine
+		\UnaryInfC{$R(w) \wedge E(w)$}
+		\DisplayProof
+		\hspace{1cm} Aplicando $Modus \text{ }Ponens$ de (3) y $C_1$.
+\item[7.] $C_3 = R(w) \text{ y } C_4 = E(w)$ \hspace{1.1cm} Eliminación del $and$ en (6).
+\item[8.] 
+		\AxiomC{$R(w)$}
+		\noLine
+		\UnaryInfC{$F(w)$}
+		\singleLine
+		\UnaryInfC{$R(w) \wedge F(w)$}
+		\DisplayProof
+		\hspace{2.8cm} Introducción del $and$ entre $C_2 \text{ y } C_3$.
+\item[9.] $\exists x [R(w) \wedge F(w)]$ \hspace{2.5cm} Generalización de la existencia en (8).
+\item[10.] En (9) se obtiene que la inferencia es válida para las proposiciones.
+\end{enumerate}
+
+$\vdash$
 
 \end{document}
