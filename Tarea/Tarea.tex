@@ -18,6 +18,8 @@
 \usepackage{algpseudocode}
 
 \usepackage{bussproofs} % pruebas lógicas
+\usepackage{multicol} % columnas
+
 
 \usepackage{fancyhdr}
 
@@ -66,7 +68,7 @@ $r:  \vartriangle$ ABC Equiangular\\
 \item $\neg p \to \neg q$ Si el triángulo ABC no es isósceles, entonces no es equiangular. 
 \item $q \iff r$ El triángulo ABC es equilatero si y sólo si el triángulo es equiangular. 
 \item $p \wedge \neg q$ Un triángulo ABC es isósceles y no equilátero.
-\item $r \to p$ SI el triángulo ABC es quilátero, entonces es isósceles.
+\item $r \to p$ Si el triángulo ABC es equilátero, entonces es isósceles.
 \end{enumerate}
 
 \newpage 
@@ -324,7 +326,7 @@ Aplicamos sustitución de implicación en ambos lados $(x \to y) = (\neg x \lor 
 Aplicamos asocitividad en el lado izquierdo $(x \lor (y \lor z)) = ((x \lor y) \lor z)$ \\
 Y Ley de Morgan en el lado derecho $\neg(x \wedge y) = (\neg x \lor \neg y)$
 \[ (\neg p \lor q) \lor r \equiv (\neg p \lor q) \lor r \]
-Se tiene en ambos lados la misma fórmula lógica, por lo que su equivalencia lógica queda demostrada
+Se tiene en ambos lados la misma fórmula lógica, por lo que su equivalencia lógica queda demostrada.
 \end{enumerate}
 \newpage
 \section{Lógica de primer orden}
@@ -367,10 +369,10 @@ Se tienen las siguientes inferencias:
 a) Demostración directa.
 \begin{enumerate}
 \item Instanciación global de: $p = $ Pedro, $b = $ Bodega1 y $t_a = $ 20:00.
-\item $Guardar(Pedro,Bodega1,20:00)$ (Axioma).
+\item $Guardar(Pedro,Bodega1,20:00)$.
 \item $\underbrace{Hora(20:00)}_{(1)} \lor \underbrace{Llave(Pedro, Bodega1)}_{(2)}$.
 \item $(1)$ es falso ya que $20:00$ no es parte de los horarios de atención.
-\item De $(2)$ se tiene que $Capataz(Pedro)$ (Axioma).
+\item De $(2)$ se sabe que debe ser verdadero, se tiene que $Llave(Pedro, Bodega1)$ implica que $Capataz(Pedro)$.
 \item Finalmente, Pedro es Capataz.
 \end{enumerate}
 
@@ -380,7 +382,7 @@ b) Demostración por contradicción.
 \item Asumiendo $\neg(Capataz(Pedro))$ y $Guardar(Pedro,Bodega1,20:00)$. Pedro no es Capataz, pero guardó materiales fuera del horario de atención.
 \item Se tiene que (por equivalencia) $\neg (Llave(Pedro, Bodega1))$, Pedro no tiene las llaves de la Bodega1.
 \item Reemplazando en el axioma instanciado \\ $Guardar(Pedro,Bodega1,20:00) \iff Hora(20:00) \lor \neg (Llave(Pedro, Bodega1)) $.
-\item Se sabe que $Hora(20:00) = 0$, por lo que el lado derecho de la equivalencia es falso.
+\item Se sabe que $Hora(20:00)$ es falso, por lo que el lado derecho de la equivalencia es falso.
 \item Por implicancia, se tiene que $\neg(Guardar(Pedro,Bodega1,20:00))$, lo que entra en contradicción con lo expuesto en el paso 2.
 \item Finalmente, por contradicción se demuestra que Pedro es Capataz.
 \end{enumerate}
@@ -433,8 +435,8 @@ Funciones de predicado:
 
 Se tienen las siguientes inferencias:
 \begin{align*}
-&1. \quad\forall x \quad[L(x) \to (R(x) \wedge E(x))] \\
-&2. \quad\exists x \quad [L(x) \wedge F(x)]\\
+1. \quad &\forall x \quad[L(x) \to (R(x) \wedge E(x))] \\
+2. \quad &\exists x \quad [L(x) \wedge F(x)]\\
 &\rule[0.1cm]{6cm}{0.1pt}\\
 &\exists x \quad [R(x) \wedge F(x)]
 \end{align*}
@@ -464,9 +466,118 @@ Aplicando derivaciones:
 		\DisplayProof
 		\hspace{2.8cm} Introducción del $and$ entre $C_2 \text{ y } C_3$.
 \item[9.] $\exists x [R(w) \wedge F(w)]$ \hspace{2.5cm} Generalización de la existencia en (8).
-\item[10.] En (9) se obtiene que la inferencia es válida para las proposiciones.
+\item[10.] En (9) se obtiene que la inferencia es válida para las proposiciones iniciales.
 \end{enumerate}
 
-$\vdash$
+\newpage
+\paragraph{Demostración por refutación}
+\begin{align*}
+1. \quad &\forall x \quad[L(x) \to (R(x) \wedge E(x))] \\
+2. \quad &\exists x \quad [L(x) \wedge F(x)]\\
+&\rule[0.1cm]{6cm}{0.1pt}\\
+&\exists x \quad [R(x) \wedge F(x)]
+\end{align*}
+
+
+\begin{multicols}{2}
+Para (1), normalizar a forma clausal:
+\begin{enumerate}
+\item Eliminación de $\to. \\
+\forall x \quad [\neg L(x) \lor (R(x) \wedge E(x))]$
+\item Reducción de $\neg\\
+$ Idem.
+\item Estandarización de variables. $\\
+$ Idem.
+\item Skolemización. $\\
+$Idem.
+\item Mover cuantificadores al principio. $\\
+$Idem.
+\item Eliminación de cuantificadores.$\\
+\neg L(x) \lor (R(x) \wedge E(x))$
+\item Distribución de $\lor$ sobre $ \wedge \\
+(\neg L(x) \lor R(x)) \wedge (\neg L(x) \lor E(x))$
+\item Separación de la conjunción. $\\
+		C_1 = \neg L(x) \lor R(x) \\
+		C_2 = \neg L(x) \lor E(x)$
+\item Estandarización de variable. $\\
+		C_1 = \neg L(x) \lor R(x) \\
+		C_2 = \neg L(y) \lor E(y)$
+\end{enumerate}
+
+
+Para (2), normalizar a forma clausal:
+\begin{enumerate}
+\item Eliminación de $\to. \\
+$ Idem.
+\item Reducción de $\neg\\
+$ Idem.
+\item Estandarización de variables. $\\
+$ Idem.
+\item Skolemización. $\\
+L(c) \wedge F(c)$
+\item Mover cuantificadores al principio. $\\
+$Idem.
+\item Eliminación de cuantificadores.$\\
+$Idem.
+\item Distribución de $\lor$ sobre $ \wedge \\
+$Idem.
+\item Separación de la conjunción. $\\
+		C_3 = L(c)\\
+		C_4 = F(c)$
+\item Estandarización de variable. $\\
+		C_3 = L(z)\\
+		C_4 = F(w)$
+\end{enumerate}
+\end{multicols}
+
+Ahora, tenemos que:
+\begin{align*}
+C_1 &= \neg L(x) \lor R(x)\\
+C_2 &= \neg L(y) \lor E(y)\\
+C_3 &= L(z)\\
+C_4 &= F(w)
+\end{align*}
+Por demostrar que:
+\[ \exists x \quad [R(x) \wedge F(x)]\]
+\newpage
+Por refutación, negar la hipótesis:
+\[ C_5 = \neg \exists x \quad [R(x) \wedge F(x)]\]
+\[ C_5 = \forall x \quad \neg [R(x) \wedge F(x)]\]
+Aplicando normalización a forma clausal para eliminar cuantificadores (pasos omitidos).
+\[ C_5 = \neg R(x) \lor \neg F(x)\]
+
+Haciendo resoluciones:
+
+\begin{enumerate}
+\item Resolución entre $C_1$ y $C_5$.
+\begin{prooftree}
+\AxiomC{$\neg L(x) \lor R(x)$}
+\noLine
+\UnaryInfC{$\neg R(x) \lor \neg F(x)$}
+\singleLine
+\UnaryInfC{$C_6 = \neg L(x) \lor \neg F(x)$}
+\end{prooftree}
+
+\item Resolución entre $C_6$ y $C_4$.
+\begin{prooftree}
+\AxiomC{$\neg L(x) \lor \neg F(x)$}
+\noLine
+\UnaryInfC{$F(w)$}
+\singleLine
+\UnaryInfC{$C_7 = \neg L(x)$}
+\end{prooftree}
+
+\item Resolución entre $C_7$ y $C_3$.
+\begin{prooftree}
+\AxiomC{$\neg L(x)$}
+\noLine
+\UnaryInfC{$L(x)$}
+\singleLine
+\LeftLabel{Contradicción}
+\UnaryInfC{$ ~\fbox{} $}
+\end{prooftree}
+
+Se produce que para $A : \exists x \quad [R(x) \wedge F(x)]$, $\neg A$ hace insatisfacible las inferencias. Por lo tanto, $A$ hace que las proposiciones sean satisfacibles, demostrando la inferencia.
+\end{enumerate}
 
 \end{document}
